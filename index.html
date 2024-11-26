@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jays Hub</title>
+    <!-- FontAwesome CDN for Play Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Jays Hub</h1>
+        <nav>
+            <a href="index.html" class="active" >Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" >Contact</a> 
+        </nav>
+    </header>
+
+    <section class="video-gallery">
+        <h2>Watch my best films here</h2>
+        <div class="video-grid">
+            <!-- Video Card 1 -->
+            <div class="video-card">
+                <video id="video1" class="video" muted>
+                    <source src="Videos/110p1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button class="fullscreen-btn" onclick="toggleFullScreen('video1')">
+                    <i class="fas fa-expand"></i> Fullscreen
+                </button>
+                <h3>Video 1</h3>
+            </div>
+            <!-- Video Card 2 -->
+            <div class="video-card">
+                <video id="video2" class="video" muted>
+                    <source src="Videos/110p2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <button class="fullscreen-btn" onclick="toggleFullScreen('video2')">
+                    <i class="fas fa-expand"></i> Fullscreen
+                </button>
+                <h3>Video 2</h3>
+            </div>
+            <!-- Add more video cards here -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 James Vickers. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get all video cards
+        const videoCards = document.querySelectorAll('.video-card');
+
+        // Function to set the active class
+        function setActiveTab(event) {
+            // Remove active class from all links
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Add active class to the clicked link
+            event.target.classList.add('active');
+        }
+
+        // Play video on hover
+        videoCards.forEach(card => {
+            const video = card.querySelector('video');
+            card.addEventListener('mouseenter', () => {
+                video.play();
+            });
+
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0; // Reset the video to start
+            });
+        });
+
+        // Function to toggle fullscreen
+        function toggleFullScreen(videoId) {
+            const video = document.getElementById(videoId);
+
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
