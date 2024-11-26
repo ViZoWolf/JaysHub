@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About James</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Jays Hub</h1>
+            <nav>
+                <a href="index.html" >Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="contact.html">Contact</a> 
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="about-section container">
+            <h2>About Me</h2>
+            <p>My name is James, Welcome to JaysHub where you can find High quality films that I have shot and edited.</p>
+            <p>If you are interested in shoots contact me. I do Rollers, Movies, Short Films, etc.</p>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 James Vickers. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.nav-link');
+    
+        // Function to set the active class
+        function setActiveTab(event) {
+            // Remove active class from all links
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Add active class to the clicked link
+            event.target.classList.add('active');
+        }
+    
+        // Add event listeners to each link
+        navLinks.forEach(link => {
+            link.addEventListener('click', setActiveTab);
+        });
+    
+        // Optionally: Set the first tab to be active by default (if needed)
+        document.getElementById('home-link').classList.add('active');
+    </script>
+    
+</body>
+</html>
