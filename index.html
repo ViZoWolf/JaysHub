@@ -15,6 +15,7 @@
             <a href="index.html" class="active" >Home</a>
             <a href="about.html">About</a>
             <a href="contact.html" >Contact</a> 
+            <a href="upload.html" >Upload</a> 
         </nav>
     </header>
 
@@ -35,7 +36,7 @@
             <!-- Video Card 2 -->
             <div class="video-card">
                 <video id="video2" class="video" muted>
-                    <source src="Videos/110p2.mp4" type="video/mp4">
+                    <source src="Videos/film1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <button class="fullscreen-btn" onclick="toggleFullScreen('video2')">
@@ -94,8 +95,193 @@
             }
         }
     </script>
+
+<section id="login-form" class="auth-form">
+    <h2>Sign In</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="signIn()">Sign In</button>
+    <p>Don't have an account? <a href="javascript:void(0);" onclick="showSignUp()">Sign Up</a></p>
+</section>
+
+<section id="sign-up-form" class="auth-form" style="display:none;">
+    <h2>Sign Up</h2>
+    <input type="email" id="signup-email" placeholder="Email">
+    <input type="password" id="signup-password" placeholder="Password">
+    <button onclick="signUp()">Sign Up</button>
+    <p>Already have an account? <a href="javascript:void(0);" onclick="showSignIn()">Sign In</a></p>
+</section>
+
+<section id="upload-panel" class="upload-panel" style="display:none;">
+    <h2>Upload a Video</h2>
+    <input type="file" id="video-file" accept="video/*">
+    <button onclick="uploadVideo()">Upload Video</button>
+    <p id="upload-status"></p>
+</section>
+
+<footer>
+    <p>&copy; 2024 Video Streaming Site</p>
+</footer>
+
+<script src="app.js"></script>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBW7P9X_xkHQY_ZfmBYs9OeMzspk-ksVpg",
+      authDomain: "jayshub-7451a.firebaseapp.com",
+      projectId: "jayshub-7451a",
+      storageBucket: "jayshub-7451a.firebasestorage.app",
+      messagingSenderId: "13113240872",
+      appId: "1:13113240872:web:41bf51a1cad9721f71341d",
+      measurementId: "G-NJ94TMQ0G6"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JaysHub</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Jays Hub</h1>
+        <header>
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a> 
+            </nav>
+        </header>
+        
+    </header>
+
+    <section class="hero">
+        <h2>Watch my best films here</h2>
+    </section>
+
+    <section class="video-gallery">
+        <h2>My Films </h2>
+        <div class="video-grid">
+            
+            <div class="video-card">
+                <video id="video1" class="video" muted>
+                    <source src="Videos/110p1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h3>Film Title </h3>
+            </div>
+            
+            <div class="video-card">
+                <video id="video2" class="video" muted>
+                    <source src="Videos/110p2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h3>Video 2</h3>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 James Vickers. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Get all video cards
+        const videoCards = document.querySelectorAll('.video-card');
+
+        // Function to set the active class
+        function setActiveTab(event) {
+            // Remove active class from all links
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Add active class to the clicked link
+            event.target.classList.add('active');
+        }
+
+        // Play video on hover
+        videoCards.forEach(card => {
+            const video = card.querySelector('video');
+            card.addEventListener('mouseenter', () => {
+                video.play();
+            });
+
+            card.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0; // Reset the video to start
+            });
+        });
+
+        // Function to toggle fullscreen
+        function toggleFullScreen(videoId) {
+            const video = document.getElementById(videoId);
+
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.mozRequestFullScreen) { // Firefox
+                video.mozRequestFullScreen();
+            } else if (video.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        }
+    </script>
+
+<script>
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Function to set the active class
+    function setActiveTab(event) {
+        // Remove active class from all links
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        // Add active class to the clicked link
+        event.target.classList.add('active');
+    }
+
+    // Add event listeners to each link
+    navLinks.forEach(link => {
+        link.addEventListener('click', setActiveTab);
+    });
+
+    // Optionally: Set the first tab to be active by default (if needed)
+    document.getElementById('home-link').classList.add('active');
+</script>
+
+</body>
+</html> -->
 
 
 
