@@ -1,25 +1,87 @@
 // Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyBW7P9X_xkHQY_ZfmBYs9OeMzspk-ksVpg",
-    authDomain: "jayshub-7451a.firebaseapp.com",
-    projectId: "jayshub-7451a",
-    storageBucket: "jayshub-7451a.firebasestorage.app",
-    messagingSenderId: "13113240872",
-    appId: "1:13113240872:web:41bf51a1cad9721f71341d",
-    measurementId: "G-NJ94TMQ0G6"
-  };
+    authDomain: "your-auth-domain.firebaseapp.com",
+    projectId: "your-project-id",
+    storageBucket: "your-storage-bucket.appspot.com",
+    messagingSenderId: "your-messaging-sender-id",
+    appId: "1:13113240872:web:41bf51a1cad9721f71341d"
+};
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const storage = firebase.storage();
 
+
+
+// Upload Video Functionality
+const uploadButton = document.getElementById("uploadButton");
+const uploadStatus = document.getElementById("uploadStatus");
+
+uploadButton.addEventListener("click", async () => {
+    const videoFile = document.getElementById("videoFile").files[0];
+    const videoTitle = document.getElementById("videoTitle").value;
+    const videoDescription = document.getElementById("videoDescription").value;
+
+    if (!videoFile || !videoTitle) {
+        uploadStatus.textContent = "Please fill out all required fields!";
+        uploadStatus.classList.add("error");
+        return;
+    }
+
+    try {
+        // Firebase Storage Reference
+        const storageRef = firebase.storage().ref("videos/" + videoFile.name);
+
+        // Upload file
+        const uploadTask = storageRef.put(videoFile);
+
+        uploadStatus.textContent = "Uploading...";
+
+        uploadTask.on(
+            "state_changed",
+            null,
+            (error) => {
+                console.error(error);
+                uploadStatus.textContent = "Error uploading video.";
+                uploadStatus.classList.add("error");
+            },
+            async () => {
+                // Get video URL after successful upload
+                const videoURL = await storageRef.getDownloadURL();
+
+                uploadStatus.textContent = "Upload successful!";
+                uploadStatus.classList.remove("error");
+
+                console.log("Video URL:", videoURL);
+                // Add code here to save video metadata (title, description, URL) to a database
+            }
+        );
+    } catch (error) {
+        console.error("Upload failed:", error);
+        uploadStatus.textContent = "An unexpected error occurred.";
+        uploadStatus.classList.add("error");
+    }
+});
+
+// Navigation for tabs
+const navLinks = document.querySelectorAll(".nav-link");
+navLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute("href").substring(1);
+        document.querySelectorAll(".tab-content").forEach(tab => {
+            tab.style.display = tab.id === targetId ? "block" : "none";
+        });
+    });
+});
+
+
 // DOM Elements
 const loginForm = document.getElementById("login-form");
 const signUpForm = document.getElementById("sign-up-form");
 const uploadPanel = document.getElementById("upload-panel");
-const uploadStatus = document.getElementById("upload-status");
 
 // Show sign-up form
 function showSignUp() {
