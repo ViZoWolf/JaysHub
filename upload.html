@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jays Hub</title>
+    <!-- FontAwesome CDN for Play Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Jays Hub</h1>
+        <nav>
+            <a href="index.html"  >Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html" >Contact</a> 
+            <a href="upload.html" class="active" >Upload</a> 
+        </nav>
+    </header>
+
+<section id="upload" class="tab-content" style="display:none;">
+    <h2>Upload Your Video</h2>
+    <p>Select a video file from your computer to upload.</p>
+    <form id="uploadForm">
+        <label for="videoTitle">Video Title:</label>
+        <input type="text" id="videoTitle" placeholder="Enter video title" required>
+
+        <label for="videoDescription">Video Description:</label>
+        <textarea id="videoDescription" placeholder="Enter a short description" rows="4"></textarea>
+
+        <label for="videoFile">Choose Video:</label>
+        <input type="file" id="videoFile" accept="video/*" required>
+
+        <button type="button" id="uploadButton">Upload</button>
+        <p id="uploadStatus"></p>
+    </form>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 James Vickers. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
