@@ -250,6 +250,71 @@ button:hover {
     color: green;
 }
 
+/* General tab styles */
+.tab-content {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 600px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-family: Arial, sans-serif;
+}
+
+.tab-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.tab-content label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.tab-content input[type="text"],
+.tab-content textarea,
+.tab-content input[type="file"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.tab-content button {
+    display: inline-block;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tab-content button:hover {
+    background-color: #555;
+}
+
+.tab-content #uploadStatus {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    color: green;
+}
+
+.tab-content #uploadStatus.error {
+    color: red;
+}
 
 
 
